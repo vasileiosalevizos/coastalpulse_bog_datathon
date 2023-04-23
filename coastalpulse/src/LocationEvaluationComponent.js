@@ -41,7 +41,7 @@ const LocationEvaluationComponent = ({ location }) => {
           <div>
             <h3>Κρήτη</h3>
             <div class='row'>
-            <h2>Υπολογισμός ΡΟΙ %</h2>
+            <h2>Υπολογισμός ROI %</h2>
               <div class='col-6'>
                 <h5>Μέσος Όρος Επισκεπτών</h5>
                 <p>43.7</p>
