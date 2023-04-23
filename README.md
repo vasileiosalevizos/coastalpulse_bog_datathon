@@ -2,7 +2,11 @@
 
 _The CoastalPulse project, which analyzes tourism trends, was created for the Bank of Greece Datathon. The marketing director of a tourism board, Jane, wants to understand the current trends and predict upcoming drops in the tourism sector. CoastalPulse, a patent-pending technology that provides real-time analysis of images and videos from various sources, including satellite and surveillance cameras, was learned about by her. CoastalPulse can integrate with Google Maps and uses advanced models to predict market trends in the tourism industry. By leveraging real-time image analysis and predictive capabilities, marketing is facilitated targeting potential visitors during anticipated downturns in the tourism sector. The coastal destination benefits from more evenly distributed tourists, reduced overcrowding at popular attractions, and a more stable tourism industry. Valuable insights and data-driven predictions are provided to inform marketing decisions and ensure the long-term success of the coastal destination._
 
-![image](https://user-images.githubusercontent.com/88648326/233834827-a19e8618-529b-4327-a0ab-be6e445f31d0.png)
+![image](https://user-images.githubusercontent.com/88648326/233836219-db118e65-e5e1-4599-b57b-86e91a1d7a7b.png)
+
+![image](https://user-images.githubusercontent.com/88648326/233836306-53040a40-7f8b-495c-89e4-a2b37be814c0.png)
+
+![image](https://user-images.githubusercontent.com/88648326/233836315-c42bfc5c-3705-4e9b-9cb9-ea5b4a266cea.png)
 
 
 <a name="readme-top"></a>
