@@ -1,0 +1,4 @@
+# hidden files
+.dev
+__pycache__
+node_modules
