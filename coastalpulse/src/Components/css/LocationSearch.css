@@ -1,0 +1,24 @@
+.location-search {
+    position: relative;
+  }
+  
+  .suggestions {
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+  }
+  
+  .suggestions li {
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .suggestions li:hover {
+    background-color: #eee;
+  }
+  
