@@ -6,9 +6,10 @@ import LocationEvaluationComponent from './LocationEvaluationComponent';
 
 const HomePage = () => {
   const [center, setCenter] = useState(null);
-
+  const [loc, setLoc] = useState(null);
   const handleLocationSelect = (location) => {
     setCenter([location.lat, location.lon]);
+    setLoc(location)
   };
 
   return (
@@ -19,7 +20,7 @@ const HomePage = () => {
       <div class='container-xl justify-content-center align-items-center' style={{ height: '400px', width: '100%' }}>
         <LocationSearchComponent onLocationSelect={handleLocationSelect} />
         <MapComponent center={center} />
-        {center && <LocationEvaluationComponent location={center} />}
+        {center && <LocationEvaluationComponent location={loc.display_name} />}
       </div>
     </div>
   );

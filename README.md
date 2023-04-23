@@ -58,6 +58,8 @@ By leveraging CoastalPulse's real-time image analysis and predictive capabilitie
 
 Start back-end.
 
+Before starting the service openai token is required. Thus, copy/paste it to ``MYTOKEN``.
+
 ### Activate python virtual environment
 
 ```bash

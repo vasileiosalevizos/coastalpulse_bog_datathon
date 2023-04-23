@@ -43,7 +43,7 @@ def delete_coordinates(coordinate_id: int):
 
 @app.get("openai/{question_id}")
 def openai_question(question_id: str):
-    openai.api_key = os.getenv("")
+    openai.api_key = os.getenv("MYTOKEN")
     completion = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
