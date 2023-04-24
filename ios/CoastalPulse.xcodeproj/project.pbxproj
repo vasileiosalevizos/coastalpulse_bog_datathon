@@ -30,6 +30,13 @@
 		0D6DD63929F40BBD008A6A5F /* Turf.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6DD62029F409C1008A6A5F /* Turf.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0D6DD63B29F41CCB008A6A5F /* coastalpulselogo 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D6DD63A29F41CCB008A6A5F /* coastalpulselogo 3.png */; };
 		0DF3ED6429F52060007F632F /* CustomModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF3ED6329F52060007F632F /* CustomModalViewController.swift */; };
+		0DF3ED6629F557E1007F632F /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF3ED6529F557E1007F632F /* BarChartView.swift */; };
+		0DF3ED6829F55805007F632F /* BarEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF3ED6729F55805007F632F /* BarEntry.swift */; };
+		0DF3ED6D29F5659F007F632F /* 71.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DF3ED6929F5659F007F632F /* 71.png */; };
+		0DF3ED6E29F5659F007F632F /* 61.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DF3ED6A29F5659F007F632F /* 61.png */; };
+		0DF3ED6F29F5659F007F632F /* 51.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DF3ED6B29F5659F007F632F /* 51.png */; };
+		0DF3ED7029F5659F007F632F /* 44.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DF3ED6C29F5659F007F632F /* 44.png */; };
+		0DF3ED7229F56614007F632F /* 81.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DF3ED7129F56614007F632F /* 81.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +97,13 @@
 		0D6DD62329F409C2008A6A5F /* MapboxCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MapboxCommon.xcframework; path = artifacts/MapboxCommon.xcframework; sourceTree = "<group>"; };
 		0D6DD63A29F41CCB008A6A5F /* coastalpulselogo 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coastalpulselogo 3.png"; sourceTree = SOURCE_ROOT; };
 		0DF3ED6329F52060007F632F /* CustomModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalViewController.swift; sourceTree = "<group>"; };
+		0DF3ED6529F557E1007F632F /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		0DF3ED6729F55805007F632F /* BarEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarEntry.swift; sourceTree = "<group>"; };
+		0DF3ED6929F5659F007F632F /* 71.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 71.png; sourceTree = SOURCE_ROOT; };
+		0DF3ED6A29F5659F007F632F /* 61.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 61.png; sourceTree = SOURCE_ROOT; };
+		0DF3ED6B29F5659F007F632F /* 51.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 51.png; sourceTree = SOURCE_ROOT; };
+		0DF3ED6C29F5659F007F632F /* 44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 44.png; sourceTree = SOURCE_ROOT; };
+		0DF3ED7129F56614007F632F /* 81.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 81.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +160,11 @@
 		0D6DD5E829F3C678008A6A5F /* CoastalPulse */ = {
 			isa = PBXGroup;
 			children = (
+				0DF3ED7129F56614007F632F /* 81.png */,
+				0DF3ED6C29F5659F007F632F /* 44.png */,
+				0DF3ED6B29F5659F007F632F /* 51.png */,
+				0DF3ED6A29F5659F007F632F /* 61.png */,
+				0DF3ED6929F5659F007F632F /* 71.png */,
 				0D6DD63A29F41CCB008A6A5F /* coastalpulselogo 3.png */,
 				0D6DD5E929F3C678008A6A5F /* AppDelegate.swift */,
 				0D6DD5EB29F3C678008A6A5F /* SceneDelegate.swift */,
@@ -157,6 +176,8 @@
 				0D6DD61929F3CD86008A6A5F /* SaveController.swift */,
 				0D6DD61B29F3D14B008A6A5F /* FilterController.swift */,
 				0DF3ED6329F52060007F632F /* CustomModalViewController.swift */,
+				0DF3ED6529F557E1007F632F /* BarChartView.swift */,
+				0DF3ED6729F55805007F632F /* BarEntry.swift */,
 			);
 			path = CoastalPulse;
 			sourceTree = "<group>";
@@ -297,7 +318,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DF3ED6E29F5659F007F632F /* 61.png in Resources */,
+				0DF3ED7029F5659F007F632F /* 44.png in Resources */,
+				0DF3ED6F29F5659F007F632F /* 51.png in Resources */,
+				0DF3ED6D29F5659F007F632F /* 71.png in Resources */,
 				0D6DD5F629F3C67A008A6A5F /* LaunchScreen.storyboard in Resources */,
+				0DF3ED7229F56614007F632F /* 81.png in Resources */,
 				0D6DD63B29F41CCB008A6A5F /* coastalpulselogo 3.png in Resources */,
 				0D6DD5F329F3C67A008A6A5F /* Assets.xcassets in Resources */,
 				0D6DD5F129F3C679008A6A5F /* Main.storyboard in Resources */,
@@ -325,10 +351,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DF3ED6829F55805007F632F /* BarEntry.swift in Sources */,
 				0D6DD61C29F3D14B008A6A5F /* FilterController.swift in Sources */,
 				0D6DD5EE29F3C678008A6A5F /* SearchController.swift in Sources */,
 				0D6DD5EA29F3C678008A6A5F /* AppDelegate.swift in Sources */,
 				0D6DD61A29F3CD86008A6A5F /* SaveController.swift in Sources */,
+				0DF3ED6629F557E1007F632F /* BarChartView.swift in Sources */,
 				0D6DD5EC29F3C678008A6A5F /* SceneDelegate.swift in Sources */,
 				0DF3ED6429F52060007F632F /* CustomModalViewController.swift in Sources */,
 			);

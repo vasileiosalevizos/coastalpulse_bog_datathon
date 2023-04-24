@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomModalViewController: UIViewController {
+class CustomModalViewController: UIViewController, UISearchBarDelegate {
 
     let defaultHeight: CGFloat = 300
     let dismissibleHeight: CGFloat = 200
@@ -15,6 +15,10 @@ class CustomModalViewController: UIViewController {
     // keep updated with new height
     var currentContainerHeight: CGFloat = 300
     var textFirstLabel = ""
+    lazy var titleLabel = UILabel()
+    lazy var horView1 = UIView()
+    lazy var horView2 = UIView()
+    lazy var fullScreenView = UIView()
     
     // 1
         lazy var containerView: UIView = {
@@ -35,7 +39,8 @@ class CustomModalViewController: UIViewController {
             
             return view
         }()
-                
+
+    
         // 3. Dynamic container constraint
         var containerViewHeightConstraint: NSLayoutConstraint?
         var containerViewBottomConstraint: NSLayoutConstraint?
@@ -117,6 +122,10 @@ class CustomModalViewController: UIViewController {
                 // Keep updating the height constraint
                 containerViewHeightConstraint?.constant = newHeight
                 // refresh layout
+                self.fullScreenView.isHidden = false
+                self.horView1.isHidden = true
+                self.horView2.isHidden = true
+                
                 view.layoutIfNeeded()
             }
         case .ended:
@@ -128,10 +137,18 @@ class CustomModalViewController: UIViewController {
             }
             else if newHeight < defaultHeight {
                 // Condition 2: If new height is below default, animate back to default
+                self.fullScreenView.isHidden = true
+                self.titleLabel.isHidden = false
+                self.horView1.isHidden = false
+                self.horView2.isHidden = false
                 animateContainerHeight(defaultHeight)
             }
             else if newHeight < maximumContainerHeight && isDraggingDown {
                 // Condition 3: If new height is below max and going down, set to default height
+                self.fullScreenView.isHidden = true
+                self.titleLabel.isHidden = false
+                self.horView1.isHidden = false
+                self.horView2.isHidden = false
                 animateContainerHeight(defaultHeight)
             }
             else if newHeight > defaultHeight && !isDraggingDown {
@@ -165,7 +182,7 @@ class CustomModalViewController: UIViewController {
             dimmedView.translatesAutoresizingMaskIntoConstraints = false
             containerView.translatesAutoresizingMaskIntoConstraints = false
             
-            lazy var titleLabel: UILabel = {
+            titleLabel = {
                 let label = UILabel()
                 label.frame = CGRect(x: 0, y: 0, width: 330, height: 30)
                 label.text = self.textFirstLabel
@@ -175,7 +192,7 @@ class CustomModalViewController: UIViewController {
                 return label
             }()
 
-            lazy var horView1: UIView = {
+            horView1 = {
                 let view = UIView()
                 view.frame = CGRect(x: -20, y: 40, width: 380, height: 80)
                 view.backgroundColor = .white
@@ -184,7 +201,7 @@ class CustomModalViewController: UIViewController {
                 moVisit.text = "Μέσος όρος επισκεπτών"
                 moVisit.textColor = .black
                 moVisit.numberOfLines = 0
-                moVisit.font = .boldSystemFont(ofSize: 20)
+                moVisit.font = .boldSystemFont(ofSize: 17)
                 view.addSubview(moVisit)
                 
                 let moExpenses = UILabel()
@@ -192,13 +209,13 @@ class CustomModalViewController: UIViewController {
                 moExpenses.text = "Μέσος όρος Δαπανών"
                 moExpenses.textColor = .black
                 moExpenses.numberOfLines = 0
-                moExpenses.font = .boldSystemFont(ofSize: 20)
+                moExpenses.font = .boldSystemFont(ofSize: 17)
                 view.addSubview(moExpenses)
                 
                 return view
             }()
             
-            lazy var horView2: UIView = {
+            horView2 = {
                 let view = UIView()
                 view.backgroundColor = .white
                 view.frame = CGRect(x: -20, y: 100, width: 380, height: 80)
@@ -207,7 +224,7 @@ class CustomModalViewController: UIViewController {
                 moVisit.text = "43.7"
                 moVisit.textColor = .black
                 moVisit.numberOfLines = 0
-                moVisit.font = .boldSystemFont(ofSize: 20)
+                moVisit.font = .boldSystemFont(ofSize: 15)
                 view.addSubview(moVisit)
                 
                 let moExpenses = UILabel()
@@ -215,21 +232,116 @@ class CustomModalViewController: UIViewController {
                 moExpenses.frame = CGRect(x: 250, y: 0, width: 150, height: 50)
                 moExpenses.textColor = .black
                 moExpenses.numberOfLines = 0
-                moExpenses.font = .boldSystemFont(ofSize: 20)
+                moExpenses.font = .boldSystemFont(ofSize: 15)
                 view.addSubview(moExpenses)
                 
                 return view
             }()
             
-//            lazy var notesLabel: UILabel = {
-//                let label = UILabel()
-//                label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem fringilla ut morbi tincidunt augue interdum. \n\nUt morbi tincidunt augue interdum velit euismod in pellentesque massa. Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere. Mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a. Eget nullam non nisi est sit amet. Odio pellentesque diam volutpat commodo. Id eu nisl nunc mi ipsum faucibus vitae.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem fringilla ut morbi tincidunt augue interdum. Ut morbi tincidunt augue interdum velit euismod in pellentesque massa."
-//                label.font = .systemFont(ofSize: 16)
-//                label.textColor = .darkGray
-//                label.numberOfLines = 0
-//                return label
-//            }()
-
+            fullScreenView = {
+                let view = UIView()
+                view.frame = CGRect(x: 0, y: 40, width: containerView.frame.width, height: containerView.frame.height-50)
+                view.backgroundColor = .blue
+                view.layer.cornerRadius = 16
+                
+                let calculateROI = UILabel(frame: CGRect(x: 60, y: 30, width: 200, height: 40))
+                calculateROI.text = "Υπολογισμός ROI%"
+                calculateROI.textAlignment = .center
+                calculateROI.textColor = .black
+                view.addSubview(calculateROI)
+                
+                let searchBar = UISearchBar(frame: CGRect(x: 60, y: 60, width: 200, height: 50))
+                searchBar.delegate = self
+                view.addSubview(searchBar)
+                
+                searchBar.setImage(UIImage(systemName: "eurosign"), for: .search, state: .normal)
+                
+                searchBar.searchTextField.backgroundColor = UIColor(red: 0.96, green: 0.45, blue: 0.12, alpha: 0.29)
+                searchBar.barTintColor = .clear
+                searchBar.backgroundColor = UIColor.clear
+                searchBar.isTranslucent = true
+                searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+                
+                let horView3: UIView = {
+                    let view = UIView()
+                    view.frame = CGRect(x: 10, y: 110, width: 380, height: 80)
+                    view.backgroundColor = .white
+                    
+                    let moVisit = UILabel()
+                    moVisit.frame = CGRect(x: 0, y: 0, width: 150, height: 80)
+                    moVisit.text = "Μέσος όρος επισκεπτών"
+                    moVisit.textColor = .black
+                    moVisit.numberOfLines = 0
+                    moVisit.font = .boldSystemFont(ofSize: 17)
+                    view.addSubview(moVisit)
+                    
+                    let barChartView1 = BarChartView()
+                    barChartView1.frame = CGRect(x: 0, y: 50, width: 340, height: 150)
+                    barChartView1.dataEntries =
+                    [
+                       BarEntry(score: 15, title: "Q1"),
+                       BarEntry(score: 35, title: "Q2"),
+                       BarEntry(score: 45, title: "Q3"),
+                    ]
+                    view.addSubview(barChartView1)
+                    
+                    
+                    return view
+                }()
+                
+                let horView4: UIView = {
+                    let view = UIView()
+                    view.backgroundColor = .white
+                    view.frame = CGRect(x: 10, y: 310, width: 380, height: 80)
+                    
+                    let moExpenses = UILabel()
+                    moExpenses.frame = CGRect(x: 0, y: 0, width: 150, height: 80)
+                    moExpenses.text = "Μέσος όρος Δαπανών"
+                    moExpenses.textColor = .black
+                    moExpenses.numberOfLines = 0
+                    moExpenses.font = .boldSystemFont(ofSize: 17)
+                    view.addSubview(moExpenses)
+                    
+                    let barChartView2 = BarChartView()
+                    barChartView2.frame = CGRect(x: 0, y: 60, width: 340, height: 150)
+                    barChartView2.dataEntries =
+                    [
+                       BarEntry(score: 15, title: "Q1"),
+                       BarEntry(score: 35, title: "Q2"),
+                       BarEntry(score: 45, title: "Q3"),
+                    ]
+                    view.addSubview(barChartView2)
+                    
+                    return view
+                }()
+                
+                view.addSubview(horView3)
+                view.addSubview(horView4)
+                
+                let subTitle = UILabel(frame: CGRect(x: 0, y: 520, width: 350, height: 30))
+                subTitle.text = "Χώρα προέλευσης ταξιδιωτών"
+                subTitle.textAlignment = .center
+                subTitle.textColor = .black
+                subTitle.font = .systemFont(ofSize: 20)
+                subTitle.numberOfLines = 0
+                view.addSubview(subTitle)
+                
+                let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+                layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+                layout.scrollDirection = .horizontal
+                layout.itemSize = CGSize(width: 50, height: 50)
+                
+                
+                let myCollectionView = UICollectionView(frame: CGRect(x: 50, y: 550, width: 250, height: 150), collectionViewLayout: layout)
+                myCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "MyCell")
+                myCollectionView.dataSource = self
+                myCollectionView.delegate = self
+                myCollectionView.backgroundColor = UIColor.white
+                view.addSubview(myCollectionView)
+                
+                return view
+            }()
+            
             lazy var contentStackView: UIStackView = {
                 let spacer = UIView()
                 let stackView = UIStackView()
@@ -237,6 +349,8 @@ class CustomModalViewController: UIViewController {
                 stackView.addSubview(titleLabel)
                 stackView.addSubview(horView1)
                 stackView.addSubview(horView2)
+                stackView.addSubview(fullScreenView)
+                fullScreenView.isHidden = true
                 stackView.addSubview(spacer)
                 return stackView
             }()
@@ -269,4 +383,48 @@ class CustomModalViewController: UIViewController {
             containerViewHeightConstraint?.isActive = true
             containerViewBottomConstraint?.isActive = true
         }
+}
+extension CustomModalViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 9 // How many cells to display
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath)
+        if indexPath.row == 0{
+            var image : UIImage = UIImage(named: "81")!
+            var imageView = UIImageView(image: image)
+            myCell.addSubview(imageView)
+        }
+        if indexPath.row == 1{
+            var image5 : UIImage = UIImage(named: "61")!
+            var imageView = UIImageView(image: image5)
+            myCell.addSubview(imageView)
+        }
+        if indexPath.row == 2{
+            var image4 : UIImage = UIImage(named: "51")!
+            var imageView = UIImageView(image: image4)
+            myCell.addSubview(imageView)
+        }
+        if indexPath.row == 3{
+            var image3 : UIImage = UIImage(named: "44")!
+            var imageView = UIImageView(image: image3)
+            myCell.addSubview(imageView)
+        }
+        if indexPath.row == 4{
+            var image2 : UIImage = UIImage(named: "71")!
+            var imageView = UIImageView(image: image2)
+            myCell.addSubview(imageView)
+        }
+    
+        
+        myCell.backgroundColor = UIColor.white
+        return myCell
+    }
+}
+extension CustomModalViewController: UICollectionViewDelegate {
+ 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       print("User tapped on item \(indexPath.row)")
+    }
 }

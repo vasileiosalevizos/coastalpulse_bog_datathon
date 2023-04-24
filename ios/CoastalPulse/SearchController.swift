@@ -19,6 +19,7 @@ class SearchController: UIViewController, UISearchBarDelegate {
     @IBOutlet var mapView: UIView!
     internal var streetMap: MapView!
     let geoCoder = CLGeocoder()    
+    var town = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class SearchController: UIViewController, UISearchBarDelegate {
         tabBarItem.image = tabBarItem.image?.withRenderingMode(.alwaysOriginal)
         tabBarItem.selectedImage = tabBarItem.selectedImage?.withRenderingMode(.alwaysOriginal)
         
-        searchBar.searchTextField.backgroundColor = UIColor(red: 0.68, green: 0.85, blue: 0.90, alpha: 1.00)
+        searchBar.searchTextField.backgroundColor = UIColor(red: 0.96, green: 0.45, blue: 0.12, alpha: 1.00)
         searchBar.barTintColor = .clear
         searchBar.backgroundColor = UIColor.clear
         searchBar.isTranslucent = true
@@ -54,7 +55,7 @@ class SearchController: UIViewController, UISearchBarDelegate {
         vc.modalPresentationStyle = .overCurrentContext
         // Keep animated value as false
         // Custom Modal presentation animation will be handled in VC itself
-        vc.textFirstLabel = "Θεσσαλία"
+        vc.textFirstLabel = town
         self.present(vc, animated: true)
     }
     
@@ -63,6 +64,7 @@ class SearchController: UIViewController, UISearchBarDelegate {
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let input = searchBar.text {
+            self.town = input
             self.handleTapGestureRecognizer()
             getCordinatesLocation(address: input)
         }
